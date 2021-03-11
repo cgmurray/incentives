@@ -35,9 +35,14 @@ class Achievement
     private $earnedAchievements;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", unique=true, length=50, nullable=false)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, options={"default":""})
+     */
+    private $description;
 
     public function __construct()
     {
@@ -149,6 +154,18 @@ class Achievement
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

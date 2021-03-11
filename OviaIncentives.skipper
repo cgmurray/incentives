@@ -4,6 +4,7 @@
     <entity name="\App\Entity\User" local-name="User" namespace="\App\Entity" uuid="e689b3ea-c9af-40bc-9b9b-686ad011df7e">
       <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="06b98c11-073e-48bb-a8be-426493392bb5"/>
       <field name="name" type="string" size="255" uuid="ae60c854-f213-4395-847a-88f306221ce5"/>
+      <field name="email" type="string" size="60" required="true" uuid="01c4aa21-b54c-4adb-8c30-44b10b05aea6"/>
       <orm-attributes>
         <attribute name="repository-class">UserRepository::class</attribute>
       </orm-attributes>
@@ -53,9 +54,14 @@
     </association>
     <entity name="\App\Entity\Incentive" local-name="Incentive" namespace="\App\Entity" uuid="435a9bd5-4b8e-4825-a438-886edeead30a">
       <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="2e86e61f-adc0-4933-a5a6-5d95dacf0093"/>
+      <field name="name" type="string" size="60" required="true" uuid="32f55cd6-ef66-4056-a4ee-71519af58825"/>
+      <field name="description" type="string" size="255" default="&quot;&quot;" required="true" uuid="78551876-5ff7-4837-90e1-700768e6d78c"/>
       <field name="program_id" type="integer" uuid="bbb5e498-1d6f-4286-9ba1-ddea40c3634b"/>
       <field name="achievement_id" type="integer" uuid="87bbe631-d017-4d4c-b537-30b9b39d7c9b"/>
       <field name="reward_id" type="integer" uuid="30870827-40ce-40b1-8966-16278efc1071"/>
+      <orm-attributes>
+        <attribute name="repository-class">IncentiveRepository::class</attribute>
+      </orm-attributes>
     </entity>
     <association from="\App\Entity\Incentive" to="\App\Entity\IncentiveProgram" owner-alias="programIncentives" inverse-alias="program" many-owner="true" many-inverse="false" uuid="8c8fb51e-1430-4ad2-9e1a-f9e0b44d85d0">
       <association-field from="program_id" to="id" uuid="914c6a85-01d6-4d09-a3e9-282b6a739ceb"/>
@@ -68,8 +74,9 @@
     </association>
     <entity name="\App\Entity\Reward" local-name="Reward" namespace="\App\Entity" uuid="f5468244-99cc-4dc5-a55f-0aa555d7ddcd">
       <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c9d952bc-0131-4568-b346-d76e3cd754e8"/>
-      <field name="name" type="string" required="true" uuid="a54fbfb9-4a7b-4b7d-ab9a-e42c4a235fcc"/>
-      <field name="cost" type="decimal" uuid="08891cb9-9bfa-4da8-9a2f-eef4fcbf578f"/>
+      <field name="name" type="string" size="0" required="true" uuid="a54fbfb9-4a7b-4b7d-ab9a-e42c4a235fcc"/>
+      <field name="description" type="string" size="255" default="&quot;&quot;" required="true" uuid="2b848bea-d8be-45e8-90af-dc468e969e50"/>
+      <field name="cost" type="decimal" size="5" default="0.00" required="true" uuid="08891cb9-9bfa-4da8-9a2f-eef4fcbf578f"/>
       <field name="incentive_managing_partner_id" type="integer" required="true" uuid="cbd1b91d-78a8-4c41-96fc-1748ffc8b80f"/>
       <orm-attributes>
         <attribute name="repository-class">RewardRepository::class</attribute>
@@ -153,7 +160,8 @@
           </attribute>
         </orm-attributes>
       </field>
-      <field name="name" type="string" size="50" required="true" uuid="88697413-4efd-4caf-856f-1dfa0ca151c0"/>
+      <field name="name" type="string" size="50" required="true" unique="true" uuid="88697413-4efd-4caf-856f-1dfa0ca151c0"/>
+      <field name="description" type="string" size="255" default="&quot;&quot;" required="true" uuid="8d921df1-c785-4b15-82d8-34ed052ca729"/>
       <orm-attributes>
         <attribute name="repository-class">AchievementRepository::class</attribute>
         <attribute name="export-file-name">Achievement.php</attribute>
@@ -204,8 +212,8 @@
     <entity uuid="3c831f78-f2d5-4a02-9cc7-565730fcc252" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="639" position-y="479" size-x="0" size-x2="94" size-y="0" size-y2="59"/>
     <entity uuid="435a9bd5-4b8e-4825-a438-886edeead30a" bg-color="#FFFFFF" hdr-color="#87C7FF" position-x="318" position-y="57" size-x="0" size-x2="123" size-y="0" size-y2="73"/>
     <entity uuid="6207355f-31e1-460e-87b6-79f8d22d8390" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="520" position-y="401" size-x="0" size-x2="89" size-y="0" size-y2="45"/>
-    <entity uuid="6390fcbc-1b1c-4f39-9970-f9c7333ce338" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="697" position-y="385" size-x="0" size-x2="67" size-y="0" size-y2="31"/>
-    <entity uuid="68f7a9b2-df9d-4b2d-bf41-1b41b989a82c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="639" position-y="253" size-x="0" size-x2="123" size-y="0" size-y2="59"/>
+    <entity uuid="6390fcbc-1b1c-4f39-9970-f9c7333ce338" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="698" position-y="393" size-x="0" size-x2="77" size-y="0" size-y2="45"/>
+    <entity uuid="68f7a9b2-df9d-4b2d-bf41-1b41b989a82c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="635" position-y="268" size-x="0" size-x2="123" size-y="0" size-y2="87"/>
     <entity uuid="b6b08839-bc68-47bf-b2ff-4a0895e31d09" bg-color="#FFFFFF" hdr-color="#87C7FF" position-x="64" position-y="126" size-x="0" size-x2="109" size-y="0" size-y2="45"/>
     <entity uuid="bfe38ddc-2b64-4831-8397-4f7fd53d98cc" bg-color="#FFFFFF" hdr-color="#87C7FF" position-x="148" position-y="320" size-x="0" size-x2="149" size-y="0" size-y2="87"/>
     <entity uuid="e689b3ea-c9af-40bc-9b9b-686ad011df7e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="459" position-y="529" size-x="0" size-x2="98" size-y="0" size-y2="45"/>

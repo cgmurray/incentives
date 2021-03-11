@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Achievement;
+use App\Entity\Employer;
+use App\Entity\Incentive;
 use App\Entity\IncentiveManagingPartner;
 use App\Entity\Reward;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -45,9 +47,11 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Manage');
+        yield MenuItem::linktoDashboard('Admin Home', 'fa fa-home');
+        yield MenuItem::section('Manage Data');
         yield MenuItem::linkToCrud('Incentive Partners', 'fas fa-list', IncentiveManagingPartner::class);
+        yield MenuItem::linkToCrud('Employers', 'fas fa-list', Employer::class);
+        yield MenuItem::linkToCrud('Incentives', 'fas fa-list', Incentive::class);
         yield MenuItem::linkToCrud('Achievements', 'fas fa-list', Achievement::class);
         yield MenuItem::linkToCrud('Rewards', 'fas fa-list', Reward::class);
     }

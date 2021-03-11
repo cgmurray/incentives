@@ -20,12 +20,17 @@ class Reward
     private $id;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", length=0, nullable=false)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false, options={"default":""})
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="decimal", length=5, nullable=false, options={"default":"0.00"})
      */
     private $cost;
 
@@ -148,6 +153,18 @@ class Reward
     public function setIncentiveManagingPartner(?IncentiveManagingPartner $incentiveManagingPartner): self
     {
         $this->incentiveManagingPartner = $incentiveManagingPartner;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

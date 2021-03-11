@@ -25,6 +25,11 @@ class User
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=60, nullable=false)
+     */
+    private $email;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\HealthMetricLog", mappedBy="user")
      */
     private $logs;
@@ -149,6 +154,18 @@ class User
                 $birth->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\IncentiveRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=IncentiveRepository::class)
  */
 class Incentive
 {
@@ -15,6 +16,16 @@ class Incentive
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=60, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, options={"default":""})
+     */
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\IncentiveProgram", inversedBy="programIncentives")
@@ -71,6 +82,30 @@ class Incentive
     public function setReward(?Reward $reward): self
     {
         $this->reward = $reward;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
