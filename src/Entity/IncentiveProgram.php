@@ -19,6 +19,11 @@ class IncentiveProgram
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $name;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProgramEmployee", mappedBy="employerProgram")
      */
     private $programEmployees;
@@ -113,6 +118,18 @@ class IncentiveProgram
     public function setEmployer(?Employer $employer): self
     {
         $this->employer = $employer;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

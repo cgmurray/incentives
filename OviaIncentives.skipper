@@ -12,6 +12,7 @@
     <entity name="\App\Entity\IncentiveProgram" local-name="IncentiveProgram" namespace="\App\Entity" uuid="b6b08839-bc68-47bf-b2ff-4a0895e31d09">
       <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="4880fa17-0476-4686-a1a3-c3902e697a94"/>
       <field name="employer_id" type="integer" uuid="4ed77558-b3d6-438d-a52d-7b73de40262f"/>
+      <field name="name" type="string" size="60" uuid="b2372939-9ba1-4128-96d6-422b6968648a"/>
     </entity>
     <association from="\App\Entity\IncentiveProgram" to="\App\Entity\Employer" owner-alias="employerPrograms" inverse-alias="employer" many-owner="true" many-inverse="false" uuid="a68314e3-0dfe-4e8f-a114-8bcec785d77d">
       <association-field from="employer_id" to="id" uuid="14b236d3-eb6f-42bc-8ef7-dea091607e28"/>
