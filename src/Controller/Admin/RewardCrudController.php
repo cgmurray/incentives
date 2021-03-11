@@ -19,8 +19,9 @@ class RewardCrudController extends AbstractCrudController
         return [
             // IdField::new('id'),
             TextField::new('name'),
+            TextField::new('description'),
             TextField::new('cost'),
-            AssociationField::new('incentiveManagingPartner')->autocomplete(),
+            AssociationField::new('incentiveManagingPartner'),
         ];
     }
 }
